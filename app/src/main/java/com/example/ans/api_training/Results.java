@@ -1,7 +1,20 @@
 package com.example.ans.api_training;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 public class Results
 {
+    @SerializedName("poster_path")
+    private String poster_path;
+    @SerializedName("adult")
+    private Boolean adult;
+    @SerializedName("overview")
+    private String overview;
+    @SerializedName("release_date")
+    private String release_date;
+
     public String getPoster_path() {
         return poster_path;
     }
@@ -10,11 +23,11 @@ public class Results
         this.poster_path = poster_path;
     }
 
-    public boolean isAdult() {
+    public Boolean getAdult() {
         return adult;
     }
 
-    public void setAdult(boolean adult) {
+    public void setAdult(Boolean adult) {
         this.adult = adult;
     }
 
@@ -34,19 +47,19 @@ public class Results
         this.release_date = release_date;
     }
 
-    public int[] getGenre_ids() {
+    public List<Integer> getGenre_ids() {
         return genre_ids;
     }
 
-    public void setGenre_ids(int[] genre_ids) {
+    public void setGenre_ids(List<Integer> genre_ids) {
         this.genre_ids = genre_ids;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -82,50 +95,58 @@ public class Results
         this.backdrop_path = backdrop_path;
     }
 
-    public double getPopularity() {
+    public Double getPopularity() {
         return popularity;
     }
 
-    public void setPopularity(double popularity) {
+    public void setPopularity(Double popularity) {
         this.popularity = popularity;
     }
 
-    public int getVote_count() {
+    public Integer getVote_count() {
         return vote_count;
     }
 
-    public void setVote_count(int vote_count) {
+    public void setVote_count(Integer vote_count) {
         this.vote_count = vote_count;
     }
 
-    public boolean isVideo() {
+    public Boolean getVideo() {
         return video;
     }
 
-    public void setVideo(boolean video) {
+    public void setVideo(Boolean video) {
         this.video = video;
     }
 
-    public double getVote_average() {
+    public Double getVote_average() {
         return vote_average;
     }
 
-    public void setVote_average(double vote_average) {
+    public void setVote_average(Double vote_average) {
         this.vote_average = vote_average;
     }
 
-    String poster_path;
-    boolean adult;
-    String overview;
-    String release_date;
-    int[] genre_ids;
-    int id;
-    String original_title;
-    String original_language;
-    String title;
-    String backdrop_path;
-    double popularity;
-    int vote_count;
-    boolean video;
-    double vote_average;
+    @SerializedName("genre_ids")
+    private List<Integer> genre_ids;
+    @SerializedName("id")
+    private Integer id;
+    @SerializedName("original_title")
+    private String original_title;
+    @SerializedName("original_language")
+    private String original_language;
+    @SerializedName("title")
+    private String title;
+    @SerializedName("backdrop_path")
+    private String backdrop_path;
+    @SerializedName("popularity")
+    private Double popularity;
+    @SerializedName("vote_count")
+    private Integer vote_count;
+    @SerializedName("video")
+    private Boolean video;
+    @SerializedName("vote_average")
+    private Double vote_average;
+
+
 }

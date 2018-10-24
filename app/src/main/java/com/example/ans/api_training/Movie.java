@@ -11,19 +11,25 @@ import retrofit2.http.Query;
 
 public class Movie
 {
-    private int page;
-    private int total_results;
-    private int total_pages;
-    @SerializedName("results")
-    private List<Results> bunchOfFilms;
+    @SerializedName("page")
+    int page;
 
-    public List<Results> getBunchOfFilms()
+    @SerializedName("total_results")
+    int total_results;
+
+    @SerializedName("total_pages")
+    int total_pages;
+
+    @SerializedName("results")
+    List<Results> results;
+
+    public List<Results> getResults()
     {
-        return bunchOfFilms;
+        return results;
     }
 
-    public void setBunchOfFilms(List<Results> bunchOfFilms) {
-        this.bunchOfFilms = bunchOfFilms;
+    public void setResults(List<Results> results) {
+        this.results = results;
     }
 
     public void setPage(int page)
