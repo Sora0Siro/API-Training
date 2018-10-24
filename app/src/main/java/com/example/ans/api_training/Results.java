@@ -1,5 +1,6 @@
 package com.example.ans.api_training;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -7,13 +8,47 @@ import java.util.List;
 public class Results
 {
     @SerializedName("poster_path")
+    @Expose
     private String poster_path;
     @SerializedName("adult")
+    @Expose
     private Boolean adult;
     @SerializedName("overview")
+    @Expose
     private String overview;
     @SerializedName("release_date")
+    @Expose
     private String release_date;
+    @SerializedName("genre_ids")
+    @Expose
+    private List<Integer> genre_ids;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("original_title")
+    @Expose
+    private String original_title;
+    @SerializedName("original_language")
+    @Expose
+    private String original_language;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("backdrop_path")
+    @Expose
+    private String backdrop_path;
+    @SerializedName("popularity")
+    @Expose
+    private Double popularity;
+    @SerializedName("vote_count")
+    @Expose
+    private Integer vote_count;
+    @SerializedName("video")
+    @Expose
+    private Boolean video;
+    @SerializedName("vote_average")
+    @Expose
+    private Double vote_average;
 
     public String getPoster_path() {
         return poster_path;
@@ -126,27 +161,4 @@ public class Results
     public void setVote_average(Double vote_average) {
         this.vote_average = vote_average;
     }
-
-    @SerializedName("genre_ids")
-    private List<Integer> genre_ids;
-    @SerializedName("id")
-    private Integer id;
-    @SerializedName("original_title")
-    private String original_title;
-    @SerializedName("original_language")
-    private String original_language;
-    @SerializedName("title")
-    private String title;
-    @SerializedName("backdrop_path")
-    private String backdrop_path;
-    @SerializedName("popularity")
-    private Double popularity;
-    @SerializedName("vote_count")
-    private Integer vote_count;
-    @SerializedName("video")
-    private Boolean video;
-    @SerializedName("vote_average")
-    private Double vote_average;
-
-
 }

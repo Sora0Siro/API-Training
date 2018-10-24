@@ -8,7 +8,7 @@ import retrofit2.http.Query;
 
 public interface GAPI
 {
-    @GET("/movie/popular")
+    @GET("movie/popular")
     Call<Movie> getMovies( @Query("api_key") String api_key);
     //@Query("language") String language,
     //@Query("page") int page,

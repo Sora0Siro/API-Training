@@ -1,5 +1,6 @@
 package com.example.ans.api_training;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -12,16 +13,20 @@ import retrofit2.http.Query;
 public class Movie
 {
     @SerializedName("page")
-    int page;
+    @Expose
+    private int page;
 
     @SerializedName("total_results")
-    int total_results;
+    @Expose
+    private int total_results;
 
     @SerializedName("total_pages")
-    int total_pages;
+    @Expose
+    private int total_pages;
 
     @SerializedName("results")
-    List<Results> results;
+    @Expose
+    private  List<Results> results;
 
     public List<Results> getResults()
     {

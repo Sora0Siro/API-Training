@@ -19,6 +19,7 @@ public class Controller implements Callback<Movie>
     public void start()
     {
         Gson gson = new GsonBuilder()
+                .setLenient()
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
