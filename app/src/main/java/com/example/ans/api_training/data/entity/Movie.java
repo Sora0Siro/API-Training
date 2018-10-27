@@ -1,39 +1,46 @@
-package com.example.ans.api_training;
+package com.example.ans.api_training.data.entity;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 public class Movie
 {
     @SerializedName("page")
-    @Expose
     private int page;
 
     @SerializedName("total_results")
-    @Expose
     private int total_results;
 
     @SerializedName("total_pages")
-    @Expose
     private int total_pages;
 
     @SerializedName("results")
-    @Expose
-    private  List<Results> results;
+    private  List<MovieResults> results;
 
-    public List<Results> getResults()
+    Movie()
+    {
+        this.page = 0;
+        this.total_results = 0;
+        this.total_pages = 0;
+        this.results = null;
+    }
+
+    Movie(Movie movie2)
+    {
+        this.page = movie2.getPage();
+        this.total_results = movie2.getTotal_results();
+        this.total_pages = movie2.getTotal_pages();
+        this.results = movie2.getResults();
+    }
+
+    public List<MovieResults> getResults()
     {
         return results;
     }
 
-    public void setResults(List<Results> results) {
+    public void setResults(List<MovieResults> results)
+    {
         this.results = results;
     }
 
@@ -44,7 +51,7 @@ public class Movie
 
     public int getPage()
     {
-return this.page;
+        return this.page;
     }
 
     public void setTotal_results(int total_results)
