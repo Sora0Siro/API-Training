@@ -9,7 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ans.api_training.R;
+import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.List;
 
 public class MovieAdapter extends ArrayAdapter<MovieResults>
@@ -17,6 +19,9 @@ public class MovieAdapter extends ArrayAdapter<MovieResults>
     private LayoutInflater inflater;
     private int layout;
     private List<MovieResults> movieResultsList;
+    static final String BASE_IMG_URL = "https://image.tmdb.org/t/p/";
+    static final String IMG_SIZE = "w500/";
+
 
     public MovieAdapter(Context context, int resource, List<MovieResults> movies)
     {
@@ -43,6 +48,7 @@ public class MovieAdapter extends ArrayAdapter<MovieResults>
         overview.setText(overview.getText()+movieResults.getOverview());
         releaseDate.setText(releaseDate.getText()+movieResults.getRelease_date());
         popularity.setText(popularity.getText()+String.valueOf(movieResults.getPopularity()));
+        Picasso.get().load(BASE_IMG_URL+IMG_SIZE+movieResults.getPoster_path()).into(moviePoster);
 
         return view;
     }

@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity implements MovieContract
 {
     private TextView textView;
     private Movie movie;
-    String request = "https://api.themoviedb.org/3/movie/550?api_key=0b3363d9492a7c969ab01d7b1cbc1029";
     //+
     ListView moviesList;
     //=

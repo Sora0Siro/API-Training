@@ -15,8 +15,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MoviePresenter { // этот класс отвечает за обработку запросов - логику -
     // сюда надо запихивать всю логику
     static final String BASE_URL = "https://api.themoviedb.org/3/";
-    static final String BASE_IMG_URL = "somewhat url for images";
+    static final String BASE_IMG_URL = "https://image.tmdb.org/t/p/";
     static final String api_key = "0b3363d9492a7c969ab01d7b1cbc1029";
+    static final String size = "w500/";
 
     private MovieContract movieContract;
 
