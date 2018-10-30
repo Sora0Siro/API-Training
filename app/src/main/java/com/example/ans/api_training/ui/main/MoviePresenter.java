@@ -6,6 +6,8 @@ import com.example.ans.api_training.data.model.movie.MoviesService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.net.URI;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,11 +23,12 @@ public class MoviePresenter { // этот класс отвечает за об�
 
     private MovieContract movieContract;
 
-    public MoviePresenter(MovieContract movieContract) {
+    public MoviePresenter(MovieContract movieContract)
+    {
         this.movieContract = movieContract;
     }
 
-    public void start()
+    public void start(String query)
     {
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -38,22 +41,41 @@ public class MoviePresenter { // этот класс отвечает за об�
 
         MoviesService moviesService = retrofit.create(MoviesService.class);
 
-        Call<Movie> call = moviesService.getMovies(api_key);
-        call.enqueue(new Callback<Movie>()
+        if(query.isEmpty())
         {
-            @Override
-            public void onResponse(Call<Movie> call, Response<Movie> response)
-            {
-                movieContract.showMovies(response.body());
-                // здесь передаем данные через интерфейс а в активити как раз их обрабатываем
-                // они там появятся в том методе (@Override)
-            }
+            //показ популярных фильмов
+            Call<Movie> call = moviesService.getMovies(api_key);
+            call.enqueue(new Callback<Movie>() {
+                @Override
+                public void onResponse(Call<Movie> call, Response<Movie> response) {
+                    movieContract.showMovies(response.body());
+                }
 
-            @Override
-            public void onFailure(Call<Movie> call, Throwable t)
+                @Override
+                public void onFailure(Call<Movie> call, Throwable t) {
+                    t.printStackTrace();
+                }
+            });
+        }
+
+        else
+        {
+            Call<Movie> call = moviesService.searchMovie(api_key,query);
+            call.enqueue(new Callback<Movie>()
             {
-               t.printStackTrace();
-            }
-        });
+                @Override
+                public void onResponse(Call<Movie> call, Response<Movie> response)
+                {
+                    movieContract.showMovies(response.body());
+                }
+
+                @Override
+                public void onFailure(Call<Movie> call, Throwable t)
+                {
+                    t.printStackTrace();
+                }
+            });
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 package com.example.ans.api_training.data.entity;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ public class MovieAdapter extends ArrayAdapter<MovieResults>
     private List<MovieResults> movieResultsList;
     static final String BASE_IMG_URL = "https://image.tmdb.org/t/p/";
     static final String IMG_SIZE = "w500/";
-
+    private int overviewLength = getContext().getResources().getInteger(R.integer.maxOverviewLength);
 
     public MovieAdapter(Context context, int resource, List<MovieResults> movies)
     {
@@ -30,7 +31,6 @@ public class MovieAdapter extends ArrayAdapter<MovieResults>
         this.layout = resource;
         this.inflater = LayoutInflater.from(context);
     }
-
 
     public View getView(int position,View convertView, ViewGroup parent)
     {
@@ -45,7 +45,19 @@ public class MovieAdapter extends ArrayAdapter<MovieResults>
         MovieResults movieResults = movieResultsList.get(position);
 
         movieTitle.setText(movieTitle.getText()+movieResults.getTitle());
-        overview.setText(overview.getText()+movieResults.getOverview());
+
+        String initialOverview = movieResults.getOverview();
+        String dots = "...";
+        int condition = overviewLength-dots.length()-overview.getText().length();
+
+        if(initialOverview.length()<condition)
+            overview.setText(overview.getText()+initialOverview+dots);
+        else if(initialOverview.length()>condition)
+            overview.setText(overview.getText() +initialOverview.substring(0,condition)+dots);
+        else
+            overview.setText(overview.getText() +initialOverview.substring(0,condition-1)+dots);
+
+
         releaseDate.setText(releaseDate.getText()+movieResults.getRelease_date());
         popularity.setText(popularity.getText()+String.valueOf(movieResults.getPopularity()));
         Picasso.get().load(BASE_IMG_URL+IMG_SIZE+movieResults.getPoster_path()).into(moviePoster);

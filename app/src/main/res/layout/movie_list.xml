@@ -4,14 +4,13 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="16dp"
-    android:background="#8A69F0AE"
-    >
+    android:background="#C9212121">
     <ImageView
         android:id="@+id/flag"
-        android:layout_marginRight="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_width="150dp"
-        android:layout_height="150dp" />
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -22,25 +21,36 @@
             android:id="@+id/movieTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title: " />
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="5dp"
+            android:text="Title: "
+            style="@style/AppTheme"/>
 
         <TextView
             android:id="@+id/overview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Overview: " />
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="5dp"
+            android:maxLength="@integer/maxOverviewLength"
+            android:text="Overview: "
+            style="@style/AppTheme"/>
 
         <TextView
             android:id="@+id/releaseDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Release Date: " />
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="5dp"
+            android:text="Release Date: "
+            style="@style/AppTheme"/>
 
         <TextView
             android:id="@+id/popularity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Popularity: " />
+            android:text="Popularity: "
+            style="@style/AppTheme"/>
 
     </LinearLayout>
 </LinearLayout>
