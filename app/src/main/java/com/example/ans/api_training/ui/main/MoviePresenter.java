@@ -1,7 +1,6 @@
 package com.example.ans.api_training.ui.main;
-
-
 import com.example.ans.api_training.data.entity.Movie;
+import com.example.ans.api_training.data.entity.MovieRequest;
 import com.example.ans.api_training.data.model.movie.MoviesService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,7 +13,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MoviePresenter { // этот класс отвечает за обработку запросов - логику -
+public class MoviePresenter
+{ // этот класс отвечает за обработку запросов - логику -
     // сюда надо запихивать всю логику
     static final String BASE_URL = "https://api.themoviedb.org/3/";
     static final String BASE_IMG_URL = "https://image.tmdb.org/t/p/";
@@ -30,6 +30,46 @@ public class MoviePresenter { // этот класс отвечает за об�
 
     public void start(String query)
     {
+        ////////////////////////////////////////////////////////////////////
+        if(query.isEmpty())
+        {
+            //показ популярных фильмов
+            Call<Movie> call = MovieRequest.getInstance().getMoviesService().getMovies(api_key);
+            call.enqueue(new Callback<Movie>() {
+                @Override
+                public void onResponse(Call<Movie> call, Response<Movie> response) {
+                    movieContract.showMovies(response.body());
+                }
+
+                @Override
+                public void onFailure(Call<Movie> call, Throwable t) {
+                    t.printStackTrace();
+                }
+            });
+        }
+
+        else
+        {
+            Call<Movie> call = MovieRequest.getInstance().getMoviesService() .searchMovie(api_key,query);
+            call.enqueue(new Callback<Movie>() {
+                @Override
+                public void onResponse(Call<Movie> call, Response<Movie> response)
+                {
+                    movieContract.showMovies(response.body());
+                }
+
+                @Override
+                public void onFailure(Call<Movie> call, Throwable t)
+                {
+                    t.printStackTrace();
+                }
+            });
+        }
+        ///////////////////////////////////////////////////////////////////
+    }
+}
+
+/*
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -39,9 +79,9 @@ public class MoviePresenter { // этот класс отвечает за об�
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
-        MoviesService moviesService = retrofit.create(MoviesService.class);
 
-        if(query.isEmpty())
+        MoviesService moviesService = retrofit.create(MoviesService.class); */
+/*if(query.isEmpty())
         {
             //показ популярных фильмов
             Call<Movie> call = moviesService.getMovies(api_key);
@@ -61,8 +101,7 @@ public class MoviePresenter { // этот класс отвечает за об�
         else
         {
             Call<Movie> call = moviesService.searchMovie(api_key,query);
-            call.enqueue(new Callback<Movie>()
-            {
+            call.enqueue(new Callback<Movie>() {
                 @Override
                 public void onResponse(Call<Movie> call, Response<Movie> response)
                 {
@@ -75,7 +114,4 @@ public class MoviePresenter { // этот класс отвечает за об�
                     t.printStackTrace();
                 }
             });
-        }
-
-    }
-}
+        }*/
