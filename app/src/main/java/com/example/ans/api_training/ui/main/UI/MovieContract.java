@@ -1,4 +1,4 @@
-package com.example.ans.api_training.ui.main;
+package com.example.ans.api_training.ui.main.UI;
 
 import com.example.ans.api_training.data.entity.Movie;
 
