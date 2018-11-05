@@ -3,4 +3,7 @@
     <string name="app_label">API-Training</string>
     <string name="search_hint">Movie to search</string>
     <string name="dots">...</string>
+    <string name="BASE_URL">https://api.themoviedb.org/3/</string>
+    <string name="BASE_IMG_URL">https://image.tmdb.org/t/p/</string>
+    <string name="IMG_SIZE">500</string>
 </resources>

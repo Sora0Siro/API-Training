@@ -4,6 +4,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Window;
@@ -17,26 +19,35 @@ import com.example.ans.api_training.data.entity.Movie;
 import com.example.ans.api_training.R;
 import com.example.ans.api_training.data.entity.MovieAdapter;
 import com.example.ans.api_training.data.entity.MovieErMsgHandler;
+import com.example.ans.api_training.data.entity.MovieResults;
+import com.example.ans.api_training.data.entity.RVMovieAdapter;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MovieContract,MovieErMsgHandler
-    // здесь реализовуем этот интерфейс
-    // в активити вообще не долнжо быть кода связанного с логикой
     // только запросы в контроллер который все решает и возвращает сюда нужные обработанные данные
 {
-    private TextView textView;
-    private Movie movie;
-    //+
-    ListView moviesList;
-    //+
+    //private TextView textView;
+    //private Movie movie;
+    //ListView moviesList;
+    private List<MovieResults> movieResults;
     private EditText editText;
+    //
+    RVMovieAdapter movieAdapter;
+    RecyclerView rvMovies;
     //=
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         hideToolbar();
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main3);
 
+        onCrt();
+    }
+
+    public void onCrt()
+    {
         editText = findViewById(R.id.searchField);
 
         MoviePresenter moviePresenter = new MoviePresenter(this,this);
@@ -59,9 +70,9 @@ public class MainActivity extends AppCompatActivity implements MovieContract,Mov
     }
 
     @Override
-    public void showMovies(Movie movie)
+    public void showMovies(List<MovieResults> movieResults)
     {
-        this.movie = movie;
+        this.movieResults = movieResults;
         setupList();
     }
 
@@ -75,10 +86,13 @@ public class MainActivity extends AppCompatActivity implements MovieContract,Mov
 
     private void setupList()
     {
-        moviesList = null;
-        moviesList = findViewById(R.id.moviesList);
-        MovieAdapter movieAdapter = new MovieAdapter(this,R.layout.movie_list,this.movie.getResults());
-        moviesList.setAdapter(movieAdapter);
+        //есть список фильмов
+        //movieResults
+        rvMovies = findViewById(R.id.myRecyclerView);
+        movieAdapter = new RVMovieAdapter(movieResults);
+        rvMovies.setAdapter(movieAdapter);
+        rvMovies.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     protected boolean isOnline() {

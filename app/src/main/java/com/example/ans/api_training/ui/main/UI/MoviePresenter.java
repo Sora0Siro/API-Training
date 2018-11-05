@@ -37,7 +37,7 @@ public class MoviePresenter
                 @Override
                 public void onResponse(Call<Movie> call, Response<Movie> response)
                 {
-                    movieContract.showMovies(response.body());
+                    movieContract.showMovies(response.body().getResults());
                 }
 
                 @Override
@@ -56,7 +56,7 @@ public class MoviePresenter
                 @Override
                 public void onResponse(Call<Movie> call, Response<Movie> response)
                 {
-                    movieContract.showMovies(response.body());
+                    movieContract.showMovies(response.body().getResults());
                 }
 
                 @Override
